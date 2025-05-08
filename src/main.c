@@ -49,8 +49,10 @@ int main(void)
 	}
 
 	char * mod_str = modify_string(line, min);
-	if (!mod_str)
+	if (!mod_str){
+		fputs("Не удалось модифицировать строку!\n", stderr);
 		return EXIT_FAILURE;
+	}
 
 	printf("Полученная строка: ");
 	printf("%s\n", mod_str);
