@@ -10,25 +10,26 @@ constexpr int STEP = 32;
 
 int get_array(int ** arr, char const * str)
 {
-	if (!arr || !str)
+	if (!arr)
 		return -1;
 
 	int len = 0, capacity = 0;
 	*arr = nullptr; // Зануление указателя перед началом работы
 
-	do {
+	while (str/*!=nullptr*/) {
+
 		assert(capacity >= 0);
 		assert(len >= 0);
 
 		/*Переход на ближайшее число. 
 		 * Завершение цикла по окончанию чисел*/
 		if(!(str = strpbrk(str, "0123456789")))
-			return len;
+			break;
 
 		int tmp;
 		/*Если ввод завершён, возврат числа введённых элементов*/
 		if (1 != sscanf(str, "%d", &tmp))
-			return len;
+			break;
 
 		/*Если место в выделенной памяти заканчивается*/
 		if (capacity < len + 1) {
@@ -49,7 +50,8 @@ int get_array(int ** arr, char const * str)
 		/*Переход на ближайший разделитель*/
 		str = strpbrk(str, "\t\n ");
 
-	} while (true);
+	}
+	return len;
 }
 
 void print_array(int const * arr, int len)
