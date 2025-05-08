@@ -26,15 +26,15 @@
     необходимо реализовать с помощью функции readline() из состава библиотеки
     GNU Readline.
 =============================================================================*/
-#include "array_handle.h"
+#include "string_manip.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 int main(void)
 {
-	int *nums, min;
+	int min;
 
-	printf("Введите минимальное число: ");
+	printf("Введите минимальную сумму чисел: ");
 	if (1 != scanf("%d", &min))
 		return EXIT_FAILURE;
 
@@ -42,26 +42,19 @@ int main(void)
 	while (getchar() != '\n')
 		;
 
-	ssize_t str_len = 0; 
-	size_t str_capacity = 0;
 	char * line = nullptr;
-	if (-1 == (str_len = getline(&line, &str_capacity, stdin))) {
+	if (-1 == getline_wrap(&line, stdin)) {
 		free(line);
 		return EXIT_FAILURE;
 	}
 
-	int count = get_array(&nums, line);
-	if (count < 0)
+	char * mod_str = modify_string(line, min);
+	if (!mod_str)
 		return EXIT_FAILURE;
 
-	print_array(nums, count);
-
-	if (modify_array(&nums, &count, min))
-		return EXIT_FAILURE;
-
-	print_array(nums, count);
-
-	free(nums);
+	printf("Полученная строка: ");
+	printf("%s\n", mod_str);
 	free(line);
+	free(mod_str);
 	return EXIT_SUCCESS;
 }
