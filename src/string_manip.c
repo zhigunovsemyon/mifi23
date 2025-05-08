@@ -35,6 +35,8 @@ static char * nums_to_string(int const * nums, int count)
 				return nullptr;
 			}
 			ret = ptr;
+			/*Зануление новой памяти*/
+			memset(ret + len - 1, 0, capacity - len - 1);
 		}
 
 		assert(ret != nullptr);
