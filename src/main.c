@@ -42,6 +42,14 @@ int main(void)
 	while (getchar() != '\n')
 		;
 
+	ssize_t str_len = 0; 
+	size_t str_capacity = 0;
+	char * line = nullptr;
+	if (-1 == (str_len = getline(&line, &str_capacity, stdin))) {
+		free(line);
+		return EXIT_FAILURE;
+	}
+
 	int count = get_array(&nums);
 	if (count < 0)
 		return EXIT_FAILURE;

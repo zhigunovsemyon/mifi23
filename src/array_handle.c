@@ -15,15 +15,8 @@ int get_array(int ** arr)
 	if (!arr)
 		return -1;
 
-	ssize_t str_len = 0; 
-	size_t str_capacity = 0;
 	*arr = nullptr; // Зануление указателя перед началом работы
 
-	char * line = NULL;
-	if (-1 == (str_len = getline(&line, &str_capacity, stdin))) {
-		free(line);
-		return -1;
-	}
 	return 0;
 
 	// do {
