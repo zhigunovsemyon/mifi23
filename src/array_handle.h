@@ -1,10 +1,10 @@
 #ifndef ARRAY_HANDLE_H_
 #define ARRAY_HANDLE_H_
 
-/* Ввод пользователем массива целых чисел.
+/* Получение из строки массива целых чисел.
  * Выделяет память, перезаписывает переданный указатель.
  * Возвращает размер массива, либо -1 при ошибке*/
-int get_array (int **);
+int get_array (int **, char const *);
 
 void print_array (int const *, int len);
 

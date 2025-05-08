@@ -50,7 +50,7 @@ int main(void)
 		return EXIT_FAILURE;
 	}
 
-	int count = get_array(&nums);
+	int count = get_array(&nums, line);
 	if (count < 0)
 		return EXIT_FAILURE;
 
@@ -62,5 +62,6 @@ int main(void)
 	print_array(nums, count);
 
 	free(nums);
+	free(line);
 	return EXIT_SUCCESS;
 }
