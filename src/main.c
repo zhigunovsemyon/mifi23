@@ -25,7 +25,6 @@
 -   	Ввод строк произвольной длины
     необходимо реализовать с помощью функции readline() из состава библиотеки
     GNU Readline.
-
 =============================================================================*/
 #include "array_handle.h"
 #include <stdio.h>
@@ -37,7 +36,11 @@ int main(void)
 
 	printf("Введите минимальное число: ");
 	if (1 != scanf("%d", &min))
-		return EXIT_SUCCESS;
+		return EXIT_FAILURE;
+
+	/*Удаление мусора после scanf*/
+	while (getchar() != '\n')
+		;
 
 	int count = get_array(&nums);
 	if (count < 0)
